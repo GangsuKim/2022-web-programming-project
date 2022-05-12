@@ -1,0 +1,241 @@
+/* Webfont by GMarket Sans Mdeium */
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fontLight {
+    font-family: 'GmarketSansLight';
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'GmarketSansMedium';
+}
+
+html, body {
+    height: 100%;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+header, main {
+    height: 100%;
+    width: 100%;
+}
+
+.circle {
+    border-radius: 50%;
+    z-index: -1;  
+}
+
+#leftCircle {
+    width: 700px;
+    height: 700px;
+    background-color: #ddf5c7;
+    position: absolute;
+    left: -233px;
+    top: -116px;
+}
+
+#leftTopCircle {
+    width: 930px;
+    height: 700px;
+    background: #FF6D6D2B 0% 0% no-repeat padding-box;
+    position: absolute;
+    left: -35px;
+    top: -552px;
+}
+
+#leftBottomCircle {
+    width: 948px;
+    height: 700px;
+    background: #9674D22B 0% 0% no-repeat padding-box;
+    position: absolute;
+    top: 677px;
+    left: -227px;
+}
+
+#rightCircle {
+    width: 794px;
+    height: 700px;
+    background: #6DEBFF2B 0% 0% no-repeat padding-box;
+    position: absolute;
+    right: -251px;
+    top: -368px;
+}
+
+#rightBottomCircle1 {
+    width: 700px;
+    height: 700px;
+    background: #FF6DD82B 0% 0% no-repeat padding-box;
+    position: absolute;
+    right: -297px;
+    top: 677px;
+}
+
+#rightBottomCircle2 {
+    width: 700px;
+    height: 700px;
+    background: #F2FFE6 0% 0% no-repeat padding-box;
+    position: absolute;
+    right: 78px;
+    bottom: -513px;
+}
+
+
+.headerMain {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.headerMain > .titleDiv {
+    text-align: right;
+    width: fit-content;
+
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+#DoI {
+    letter-spacing: 7px;
+}
+
+#ofGSK {
+    letter-spacing: 3px;
+}
+
+
+.percentDiv {
+    width: 450px;
+    height: 470px;
+    margin: 40px auto;
+
+    position: relative;
+}
+
+.priceCircle {
+    border-radius: 50%;
+
+    color: rgb(255, 255, 255);
+}
+
+.priceCircle[id=one] {
+    width: 400px;
+    height: 400px;
+
+    background-color: #FF6D6D;
+    position: absolute;
+}
+
+.priceCircle[id=one] > .inner {
+    position: absolute;
+    top: 160px;
+    left: 40px;
+    text-align: left;
+}
+
+.inner > #stockCount {
+    font-size: 20px;
+}
+
+.inner > #stockName {
+    font-size: 50px;
+}
+
+
+.inner > #stockPrice {
+    font-size: 25px;
+}
+
+.priceCircle[id=two] {
+    width: 250px;
+    height: 250px;
+
+    background-color: #5e79d4;
+    position: absolute;
+    z-index: 3;
+
+    right: 0;
+    bottom: 0;
+}
+
+.priceCircle[id=two] > .inner {
+    text-align: center;
+    margin-top: 80px;
+}
+
+
+.priceDiv {
+    width: 450px;
+    height: 80px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.priceDiv > #totalPriceTitle {
+    font-size: 25px;
+    color: #a0a0a0;
+}
+
+.priceDiv > #totlaPrice {
+    font-size: 40px;
+}
+
+.selectDiv {
+    width: 350px;
+    height: 50px;
+    margin: 20px auto;
+    background-color: rgba(128, 128, 128, 0.7);
+    border-radius: 40px;
+    line-height: 57px;
+}
+
+.selectDiv > a {
+    font-family: 'GmarketSansLight';
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    margin: 0px 15px;
+    padding: 10px 10px 4px 10px;
+    border-radius: 20px;
+}
+
+.selectDiv > a:hover, .selected{
+    background-color: rgb(87, 87, 87);
+    cursor: pointer;
+}
+
+.alignMiddle{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.loadTimeDiv > a {
+    font-family: 'GmarketSansLight';
+    font-size: 20px;
+}
+
+main {
+    height: 100%;
+    background-color: white;
+}
+
+.topBar {
+    background-color: black;
+    width: black;
+    height: 100px;
+}
