@@ -1,5 +1,6 @@
-var USDKRW, GOOGL, META, GOOGL_DONE, META_DONE;
-const GOOGL_CNT = 2, META_CNT = 2;
+var USDKRW, GOOGL, META, KAKAOGAMES;
+var GOOGL_DONE, META_DONE, KAKAOGAMES_DONE;
+const GOOGL_CNT = 2, META_CNT = 2, KAKAOGAMES_CNT = 5;
 
 const options = {
     method: 'GET',
@@ -31,11 +32,20 @@ fetch('https://api.currencyfreaks.com/latest?apikey=239c9b6b6e9645ec91dc09654fa9
             stockPrice[1].innerText = addComma(META*2) + '원';
             setUpPrice();
         });
+
+    fetch("http://server.go-guma.com/WPProj/KAKAOGAMES.php")
+        .then(res => res.json())
+        .then(res => {
+            KAKAOGAMES = parseInt(parseInt(res.price));
+            KAKAOGAMES_DONE = true;
+            stockPrice[2].innerText = addComma(KAKAOGAMES*5) + '원';
+            setUpPrice();
+        });
 });
 
 function setUpPrice() {
-    if (GOOGL_DONE && META_DONE) {
-        var price = (GOOGL * 2) + (META * 2) + '';
+    if (GOOGL_DONE && META_DONE && KAKAOGAMES_DONE) {
+        var price = (GOOGL * 2) + (META * 2) + (KAKAOGAMES * 5) + '';
         totalPrice.innerText = addComma(price) + '원';
     }
 }
