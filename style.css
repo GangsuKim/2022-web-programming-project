@@ -118,67 +118,6 @@ header, main {
     letter-spacing: 3px;
 }
 
-
-.percentDiv {
-    width: 450px;
-    height: 470px;
-    margin: 40px auto;
-
-    position: relative;
-}
-
-.priceCircle {
-    border-radius: 50%;
-
-    color: rgb(255, 255, 255);
-}
-
-.priceCircle[id=one] {
-    width: 400px;
-    height: 400px;
-
-    background-color: #FF6D6D;
-    position: absolute;
-}
-
-.priceCircle[id=one] > .inner {
-    position: absolute;
-    top: 160px;
-    left: 40px;
-    text-align: left;
-}
-
-.inner > #stockCount {
-    font-size: 20px;
-}
-
-.inner > #stockName {
-    font-size: 50px;
-}
-
-
-.inner > #stockPrice {
-    font-size: 25px;
-}
-
-.priceCircle[id=two] {
-    width: 250px;
-    height: 250px;
-
-    background-color: #5e79d4;
-    position: absolute;
-    z-index: 3;
-
-    right: 0;
-    bottom: 0;
-}
-
-.priceCircle[id=two] > .inner {
-    text-align: center;
-    margin-top: 80px;
-}
-
-
 .priceDiv {
     width: 450px;
     height: 80px;
@@ -211,6 +150,8 @@ header, main {
     margin: 0px 15px;
     padding: 10px 10px 4px 10px;
     border-radius: 20px;
+
+    text-decoration: none;
 }
 
 .selectDiv > a:hover, .selected{
