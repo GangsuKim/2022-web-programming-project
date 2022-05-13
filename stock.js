@@ -14,43 +14,43 @@ const totalPrice = document.querySelector('#totlaPrice');
 
 fetch('https://api.currencyfreaks.com/latest?apikey=239c9b6b6e9645ec91dc09654fa9f24d').then(res => res.json()).then(res => {
     USDKRW = res.rates.KRW
-
-    fetch('https://yh-finance.p.rapidapi.com/stock/v3/get-chart?interval=1m&symbol=GOOGL&range=1d&region=HK&includePrePost=false&useYfid=true&includeAdjustedClose=true&events=capitalGain%2Cdiv%2Csplit', options)
-        .then(response => response.json())
-        .then(response => {
-            GOOGL = parseInt(response['chart']['result'][0]['meta']['regularMarketPrice'] * USDKRW);
-            texts[0].innerText = (GOOGL * GOOGL_CNT).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + '원';
+    fetch("http://server.go-guma.com/WPProj/GOOGL.php")
+        .then(res => res.json())
+        .then(res => {
+            GOOGL = parseInt(parseInt(res.price) * USDKRW);
             GOOGL_DONE = true;
+            stockPrice[0].innerText = addComma(GOOGL*2) + '원';
             setUpPrice();
         });
 
-    fetch('https://yh-finance.p.rapidapi.com/stock/v3/get-chart?interval=1m&symbol=FB&range=1d&region=HK&includePrePost=false&useYfid=true&includeAdjustedClose=true&events=capitalGain%2Cdiv%2Csplit', options)
-        .then(response => response.json())
-        .then(response => {
-            META = parseInt(response['chart']['result'][0]['meta']['regularMarketPrice'] * USDKRW);
-            alert(addComma(META + ''));
-            texts[1].innerText = (META * META_CNT).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + '원';
+    fetch("http://server.go-guma.com/WPProj/META.php")
+        .then(res => res.json())
+        .then(res => {
+            META = parseInt(parseInt(res.price) * USDKRW);
             META_DONE = true;
+            stockPrice[1].innerText = addComma(META*2) + '원';
             setUpPrice();
         });
 });
 
 function setUpPrice() {
-    if(GOOGL_DONE && META_DONE) {
-        var price = (parseInt(GOOGL) * 2) + (parseInt(META) * 2) + '';
-        totalPrice.innerText = price.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",") + '원';
+    if (GOOGL_DONE && META_DONE) {
+        var price = (GOOGL * 2) + (META * 2) + '';
+        totalPrice.innerText = addComma(price) + '원';
     }
 }
 
 function addComma(plainPriceText) {
-    var commatext, c = 0;
-    for (var i = plainPriceText.length - 1; i >= 0; i--) {
+    var commatext = '', c = 0;
+    plainPriceText += '';
+    for (var i = plainPriceText.length-1; i >= 0; i--) {
         c++;
-        if(c == 3) {
+        if (c == 3 && i != 0) {
             commatext = ',' + plainPriceText[i] + commatext;
+            c = 0;
         } else {
             commatext = plainPriceText[i] + commatext;
         }
     }
-    return commatext;
+    return commatext
 }
