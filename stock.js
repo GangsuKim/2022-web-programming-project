@@ -2,6 +2,9 @@ var USDKRW, GOOGL, META, KAKAOGAMES;
 var GOOGL_DONE, META_DONE, KAKAOGAMES_DONE;
 const GOOGL_CNT = 2, META_CNT = 2, KAKAOGAMES_CNT = 5;
 
+const texts = document.querySelectorAll('#stockPrice');
+const totalPrice = document.querySelector('#totlaPrice');
+
 const options = {
     method: 'GET',
     headers: {
@@ -9,9 +12,6 @@ const options = {
         'X-RapidAPI-Key': '6e1e98fe82msh9b0b06f7a98c2d2p1c8126jsn776f8ccf5839'
     }
 };
-
-const texts = document.querySelectorAll('#stockPrice');
-const totalPrice = document.querySelector('#totlaPrice');
 
 fetch('https://api.currencyfreaks.com/latest?apikey=239c9b6b6e9645ec91dc09654fa9f24d').then(res => res.json()).then(res => {
     USDKRW = res.rates.KRW
@@ -43,6 +43,8 @@ fetch('https://api.currencyfreaks.com/latest?apikey=239c9b6b6e9645ec91dc09654fa9
         });
 });
 
+showTime();
+
 function setUpPrice() {
     if (GOOGL_DONE && META_DONE && KAKAOGAMES_DONE) {
         var price = (GOOGL * 2) + (META * 2) + (KAKAOGAMES * 5) + '';
@@ -63,4 +65,27 @@ function addComma(plainPriceText) {
         }
     }
     return commatext
+}
+
+function showTime() {
+    let today = new Date();
+    const timeA = document.getElementById('timeA');
+
+    let year = today.getFullYear();
+    let month = toFullword(today.getMonth() + 1);
+    let date = toFullword(today.getDate());
+    let day = toFullword(today.getDay());
+    let hour = toFullword(today.getHours());
+    let min = toFullword(today.getMinutes());
+    let sec = toFullword(today.getSeconds());
+
+    var timeStamp = year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
+    timeA.innerText = timeStamp;
+}
+
+function toFullword(string) {
+    if (string < 10) {
+        string = '0' + string;
+    }
+    return string
 }
