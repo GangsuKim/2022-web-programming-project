@@ -1,81 +1,45 @@
-.percentDiv {
-    width: 600px;
-    height: 430px;
-    margin: 40px auto;
+.nftSliderDiv {
+    height: 500px;
+    margin: 20px auto;
+    /* background-color: yellow; */
     position: relative;
 }
 
-.priceCircle {
-    border-radius: 50%;
-    color: rgb(255, 255, 255);
-    transition: all 0.2s;
+.centerNFTBar {
+    height: 500px;
+    width: 360px;
+    background-color: white;
+
+    display: inline-block;
+    margin: 0 auto;
+
+    border-radius: 25px;
+    box-shadow: 0px 0px 20px #00000029;
 }
 
-.priceCircle:hover {
-    cursor: pointer;
-    padding: 20px;
-    transition: all 0.2s;
+.NFTBarTop {
+    height: 50px;
+    line-height: 50px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.24);
 }
 
-.priceCircle[id=one] {
-    width: 400px;
-    height: 400px;
-    background-color: #4F463B;  
+.NFTBarTop > #collection {
+    display: inline-block;
+    font-size: 27px;
+    padding-top: 3px;
+    padding-left: 12px;
 }
 
-.priceCircle[id=one] > .inner {
-    /* position: absolute;
-    top: 110px;
-    left: 60px; */
-    margin-top: 100px;
-    text-align: center;
+.NFTBarTop > #detail {
+    float: right;
+    padding-right: 12px;
+    padding-top: 10px;
 }
 
-.inner > #stockCount {
-    font-size: 20px;
-}
-
-.inner > #stockName {
-    font-size: 50px;
-}
-
-
-.inner > #stockPrice {
-    font-size: 25px;
-}
-
-.priceCircle[id=two] {
-    width: 250px;
-    height: 250px;
-
-    background-color: #1D972F;
-    position: absolute;
-    z-index: 3;
-
-    right: 0;
-    bottom: 0;
-}
-
-.priceCircle[id=two] > .inner {
-    text-align: center;
-    margin-top: 80px;
-}
-
-.priceCircle[id=thr] {
-    width: 250px;
-    height: 250px;
-
-    background-color: #070001;
-    position: absolute;
-    z-index: 3;
-
-    left: 0;
-    bottom: 0;
-}
-
-.priceCircle[id=thr] > .inner {
-    text-align: center;
-    margin-top: 90px;
+.centerNFTBar > img {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.24);
 }
 
 .klaytn {
