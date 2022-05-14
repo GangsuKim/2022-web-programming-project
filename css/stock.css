@@ -48,7 +48,7 @@
     width: 250px;
     height: 250px;
 
-    background-color: #5e79d4;
+    background-color: rgb(24, 118, 242);
     position: absolute;
     z-index: 3;
 
@@ -65,12 +65,13 @@
     width: 250px;
     height: 250px;
 
-    background-color: #25d87e;
+    background-color: #fee102;
     position: absolute;
     z-index: 3;
 
     left: 0;
     bottom: 0;
+    color: black;
 }
 
 .priceCircle[id=thr] > .inner {
