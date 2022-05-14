@@ -1,0 +1,87 @@
+.percentDiv {
+    width: 600px;
+    height: 430px;
+    margin: 40px auto;
+    position: relative;
+}
+
+.priceCircle {
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    transition: all 0.2s;
+}
+
+.priceCircle:hover {
+    cursor: pointer;
+    padding: 20px;
+    transition: all 0.2s;
+}
+
+.priceCircle[id=one] {
+    width: 400px;
+    height: 400px;
+    background-color: #4F463B;  
+}
+
+.priceCircle[id=one] > .inner {
+    /* position: absolute;
+    top: 110px;
+    left: 60px; */
+    margin-top: 100px;
+    text-align: center;
+}
+
+.inner > #stockCount {
+    font-size: 20px;
+}
+
+.inner > #stockName {
+    font-size: 50px;
+}
+
+
+.inner > #stockPrice {
+    font-size: 25px;
+}
+
+.priceCircle[id=two] {
+    width: 250px;
+    height: 250px;
+
+    background-color: #1D972F;
+    position: absolute;
+    z-index: 3;
+
+    right: 0;
+    bottom: 0;
+}
+
+.priceCircle[id=two] > .inner {
+    text-align: center;
+    margin-top: 80px;
+}
+
+.priceCircle[id=thr] {
+    width: 250px;
+    height: 250px;
+
+    background-color: #070001;
+    position: absolute;
+    z-index: 3;
+
+    left: 0;
+    bottom: 0;
+}
+
+.priceCircle[id=thr] > .inner {
+    text-align: center;
+    margin-top: 90px;
+}
+
+.klaytn {
+    box-shadow: 0px 0px 60px #4F463B4f;
+}
+
+.yooshi {
+    box-shadow: 0px 0px 60px #1D972F4f;
+}
