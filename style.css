@@ -171,8 +171,79 @@ header, main {
 }
 
 
-/* MAIN */
+/* HEADER - STOCK BOARD */
+.stockBoard {
+    width: 360px;
+    height: 440px;
+    padding: 20px;
 
+    position: absolute;
+
+    background: #00000014 0% 0% no-repeat padding-box;
+    backdrop-filter: blur(25px);
+    right: 30px;
+    bottom: 30px;
+    border-radius: 30px;
+}
+
+.stock > #stockName {
+    font-size: 40px;
+}
+
+.stock > #stockCount {
+    font-size: 25px;
+}
+
+.stock > .priceInner {
+    margin-left: 20px;
+    margin-top: 10px;
+    color: #575757;
+}
+
+.priceInner > a {
+    display: block;
+}
+
+#stockBoardTitle {
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+#stockBoardPrice {
+    font-size: 40px;
+}
+
+.stockBoardBottom {
+    background-color: white;
+    position: absolute;
+    height: 50px;
+    width: 140px;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.stockBoardBottom > div {
+    display: inline-block;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+
+    border-radius: 50%;
+}
+
+.stockBoardBottom > div:first-child {
+    margin-right: 20px;
+}
+
+.stockBoardBottom > div:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.253);
+}
+
+/* MAIN */
 main {
     height: 300%;
     background-color: white;
@@ -235,6 +306,11 @@ main {
     text-align: justify;
     font-size: 20px;
     font-weight: 450;
+}
+
+.article > img {
+    width: 50%;
+    margin-left: 25%;
 }
 
 .alphabet {

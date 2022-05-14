@@ -1,12 +1,14 @@
-var USDKRW, GOOGL, META, KAKAOGAMES;
-var GOOGL_DONE, META_DONE, KAKAOGAMES_DONE;
+var USDKRW;
+
+var GOOGL = new Object({cnt : 2, done: false, name: 'Alphabet', bought: 3369411});
+var META = new Object({cnt : 2, done: false, name: 'META', bought: 276691});
+var KAKAOGAMES = new Object({cnt : 5, done: false, name: '카카오 게임즈', bought: 90600});
+
+const stocks = [GOOGL, META, KAKAOGAMES];
+var stockDivs = [];
 
 const texts = document.querySelectorAll('#stockPrice');
 const totalPrice = document.querySelector('#totlaPrice');
-
-const GOOGL_CNT = 2,
-    META_CNT = 2,
-    KAKAOGAMES_CNT = 5;
 
 function fetchData() {
     const options = {
@@ -22,37 +24,69 @@ function fetchData() {
         fetch("http://server.go-guma.com/WPProj/GOOGL.php")
             .then(res => res.json())
             .then(res => {
-                GOOGL = parseInt(parseInt(res.price) * USDKRW);
-                GOOGL_DONE = true;
-                stockPrice[0].innerText = addComma(GOOGL * 2) + '원';
+                GOOGL.price = parseInt(parseInt(res.price) * USDKRW);
+                GOOGL.done = true;
+                stockPrice[0].innerText = addComma(GOOGL.price * GOOGL.cnt) + '원';
                 setUpPrice();
             });
 
         fetch("http://server.go-guma.com/WPProj/META.php")
             .then(res => res.json())
             .then(res => {
-                META = parseInt(parseInt(res.price) * USDKRW);
-                META_DONE = true;
-                stockPrice[1].innerText = addComma(META * 2) + '원';
+                META.price = parseInt(parseInt(res.price) * USDKRW);
+                META.done = true;
+                stockPrice[1].innerText = addComma(META.price * META.cnt) + '원';
                 setUpPrice();
             });
 
         fetch("http://server.go-guma.com/WPProj/KAKAOGAMES.php")
             .then(res => res.json())
             .then(res => {
-                KAKAOGAMES = parseInt(parseInt(res.price));
-                KAKAOGAMES_DONE = true;
-                stockPrice[2].innerText = addComma(KAKAOGAMES * 5) + '원';
+                KAKAOGAMES.price = parseInt(parseInt(res.price));
+                KAKAOGAMES.done = true;
+                stockPrice[2].innerText = addComma(KAKAOGAMES.price * KAKAOGAMES.cnt) + '원';
                 setUpPrice();
             });
     });
 };
 
+function setUpBoard(stockIn) {
+    for (i = 0; i < stockIn.length; i++) {
+        var SBDiv = document.createElement('div');
+        SBDiv.setAttribute('class', 'stock');
+        SBDiv.setAttribute('id', i);
+
+        // if(i != 0) {
+        //     SBDiv.hidden = true;
+        // }
+
+        SBDiv.innerHTML = '<a id="stockName">' + stockIn[i].name + '</a>';
+        SBDiv.innerHTML += '<a id="stockCount" class="fontLight">' + stockIn[i].cnt + '주</a><br>';
+
+        SBInner = document.createElement('div');
+        SBInner.setAttribute('class','priceInner');
+
+        SBInner.innerHTML += '<a id="stockBoardTitle">현재 가격</a>';
+        SBInner.innerHTML += '<a id="stockBoardPrice">' + addComma(stockIn[i].price) + '원</a>';
+        SBInner.innerHTML += '<a id="stockBoardTitle">매수 가격</a>';
+        SBInner.innerHTML += '<a id="stockBoardPrice">' + addComma(stockIn[i].bought) + '원</a>';
+        SBInner.innerHTML += '<a id="stockBoardTitle">수익률</a>';
+        SBInner.innerHTML += '<a id="stockBoardPrice">' + calcPM(stockIn[i].price, stockIn[i].bought) + '%</a>';
+        
+        SBDiv.appendChild(SBInner);
+        stockDivs.push(SBDiv)
+    }
+
+    const stockBoard = document.getElementsByClassName('stockBoard')[0];
+    stockBoard.insertBefore(stockDivs[0], stockBoard.getElementsByClassName('stockBoardBottom')[0]);
+}
+
 function setUpPrice() {
-    if (GOOGL_DONE && META_DONE && KAKAOGAMES_DONE) {
-        var price = (GOOGL * 2) + (META * 2) + (KAKAOGAMES * 5) + '';
+    if (GOOGL.done && META.done && KAKAOGAMES.done) {
+        var price = (GOOGL.price * GOOGL.cnt) + (META.price * META.cnt) + (KAKAOGAMES.price * KAKAOGAMES.cnt) + '';
         totalPrice.innerText = addComma(price) + '원';
         googlePrice();
+        setUpBoard(stocks);
     }
 }
 
@@ -79,7 +113,6 @@ function showTime() {
     let year = today.getFullYear();
     let month = toFullword(today.getMonth() + 1);
     let date = toFullword(today.getDate());
-    let day = toFullword(today.getDay());
     let hour = toFullword(today.getHours());
     let min = toFullword(today.getMinutes());
     let sec = toFullword(today.getSeconds());
@@ -100,12 +133,51 @@ function googlePrice() {
 
     for (var i = 0; i < googlePriceSpans.length; i++) {
         if (googlePriceSpans[i].innerText == '') {
-            googlePriceSpans[i].innerText = addComma(GOOGL) + '원';
+            googlePriceSpans[i].innerText = addComma(GOOGL.price) + '원';
         } else {
-            var priceTemp = parseInt(eval(GOOGL + googlePriceSpans[i].innerText));
+            var priceTemp = parseInt(eval(GOOGL.price + googlePriceSpans[i].innerText));
             googlePriceSpans[i].innerText = addComma(priceTemp) + '원';
         }
     }
+}
+
+function calcPM(now,bought) {
+    var percent = (now / bought) * 1000;
+    var PM = Math.round((percent - 1000) / 10);
+    return PM
+}
+
+document.getElementById('boardBefore').addEventListener('click', handleBoardBefore);
+document.getElementById('boardNext').addEventListener('click', handleBoardNext);
+
+function handleBoardBefore() {
+    const stockBoard = document.getElementsByClassName('stockBoard')[0];
+    const stock = stockBoard.getElementsByClassName('stock')[0];
+    var moveTo;
+
+    if(stock.id == 0) {
+        moveTo = stockDivs[stockDivs.length - 1];
+    } else {
+        moveTo = stockDivs[stock.id - 1]
+    }
+
+    stockBoard.removeChild(stock);
+    stockBoard.insertBefore(moveTo, stockBoard.getElementsByClassName('stockBoardBottom')[0]);
+}
+
+function handleBoardNext() {
+    const stockBoard = document.getElementsByClassName('stockBoard')[0];
+    const stock = stockBoard.getElementsByClassName('stock')[0];
+    var moveTo;
+
+    if(stock.id == (stockDivs.length - 1)) {
+        moveTo = stockDivs[0];
+    } else {
+        moveTo = stockDivs[parseInt(stock.id) + 1];
+    }
+
+    stockBoard.removeChild(stock);
+    stockBoard.insertBefore(moveTo, stockBoard.getElementsByClassName('stockBoardBottom')[0]);
 }
 
 showTime();
