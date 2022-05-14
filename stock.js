@@ -1,12 +1,10 @@
-var USDKRW, GOOGL, META, KAKAOGAMES;
-var GOOGL_DONE, META_DONE, KAKAOGAMES_DONE;
+var USDKRW;
+var GOOGL = new Object({cnt : 2, done: false});
+var META = new Object({cnt : 2, done: false});
+var KAKAOGAMES = new Object({cnt : 5, done: false});
 
 const texts = document.querySelectorAll('#stockPrice');
 const totalPrice = document.querySelector('#totlaPrice');
-
-const GOOGL_CNT = 2,
-    META_CNT = 2,
-    KAKAOGAMES_CNT = 5;
 
 function fetchData() {
     const options = {
@@ -22,35 +20,35 @@ function fetchData() {
         fetch("http://server.go-guma.com/WPProj/GOOGL.php")
             .then(res => res.json())
             .then(res => {
-                GOOGL = parseInt(parseInt(res.price) * USDKRW);
-                GOOGL_DONE = true;
-                stockPrice[0].innerText = addComma(GOOGL * 2) + '원';
+                GOOGL.price = parseInt(parseInt(res.price) * USDKRW);
+                GOOGL.done = true;
+                stockPrice[0].innerText = addComma(GOOGL.price * GOOGL.cnt) + '원';
                 setUpPrice();
             });
 
         fetch("http://server.go-guma.com/WPProj/META.php")
             .then(res => res.json())
             .then(res => {
-                META = parseInt(parseInt(res.price) * USDKRW);
-                META_DONE = true;
-                stockPrice[1].innerText = addComma(META * 2) + '원';
+                META.price = parseInt(parseInt(res.price) * USDKRW);
+                META.done = true;
+                stockPrice[1].innerText = addComma(META.price * META.cnt) + '원';
                 setUpPrice();
             });
 
         fetch("http://server.go-guma.com/WPProj/KAKAOGAMES.php")
             .then(res => res.json())
             .then(res => {
-                KAKAOGAMES = parseInt(parseInt(res.price));
-                KAKAOGAMES_DONE = true;
-                stockPrice[2].innerText = addComma(KAKAOGAMES * 5) + '원';
+                KAKAOGAMES.price = parseInt(parseInt(res.price));
+                KAKAOGAMES.done = true;
+                stockPrice[2].innerText = addComma(KAKAOGAMES.price * KAKAOGAMES.cnt) + '원';
                 setUpPrice();
             });
     });
 };
 
 function setUpPrice() {
-    if (GOOGL_DONE && META_DONE && KAKAOGAMES_DONE) {
-        var price = (GOOGL * 2) + (META * 2) + (KAKAOGAMES * 5) + '';
+    if (GOOGL.done && META.done && KAKAOGAMES.done) {
+        var price = (GOOGL.price * GOOGL.cnt) + (META.price * META.cnt) + (KAKAOGAMES.price * KAKAOGAMES.cnt) + '';
         totalPrice.innerText = addComma(price) + '원';
         googlePrice();
     }
@@ -79,7 +77,6 @@ function showTime() {
     let year = today.getFullYear();
     let month = toFullword(today.getMonth() + 1);
     let date = toFullword(today.getDate());
-    let day = toFullword(today.getDay());
     let hour = toFullword(today.getHours());
     let min = toFullword(today.getMinutes());
     let sec = toFullword(today.getSeconds());
@@ -100,9 +97,9 @@ function googlePrice() {
 
     for (var i = 0; i < googlePriceSpans.length; i++) {
         if (googlePriceSpans[i].innerText == '') {
-            googlePriceSpans[i].innerText = addComma(GOOGL) + '원';
+            googlePriceSpans[i].innerText = addComma(GOOGL.price) + '원';
         } else {
-            var priceTemp = parseInt(eval(GOOGL + googlePriceSpans[i].innerText));
+            var priceTemp = parseInt(eval(GOOGL.price + googlePriceSpans[i].innerText));
             googlePriceSpans[i].innerText = addComma(priceTemp) + '원';
         }
     }
