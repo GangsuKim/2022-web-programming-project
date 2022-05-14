@@ -277,7 +277,7 @@ main {
 
 .article {
     width: 60%;
-    margin: 0 auto;
+    margin: 100px auto;
     border-radius: 40px;
 }
 
@@ -315,4 +315,14 @@ main {
 
 .alphabet {
     box-shadow: 0px 0px 60px #ff6d6d4f;
+}
+
+.kakaogames {
+    box-shadow: 0px 0px 60px #fee1024f;
+}
+
+@media screen and (max-width: 1299px) {
+    .article {
+        width: 90%;
+    }
 }
