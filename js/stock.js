@@ -19,8 +19,8 @@ function fetchData() {
         }
     };
 
-    fetch('https://api.currencyfreaks.com/latest?apikey=239c9b6b6e9645ec91dc09654fa9f24d').then(res => res.json()).then(res => {
-        USDKRW = res.rates.KRW
+    fetch('http://server.go-guma.com/WPProj/USDtoKRW.php').then(res => res.json()).then(res => {
+        USDKRW = res.price
         fetch("http://server.go-guma.com/WPProj/GOOGL.php")
             .then(res => res.json())
             .then(res => {
