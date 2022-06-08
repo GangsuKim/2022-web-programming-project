@@ -42,8 +42,8 @@ header, main {
 }
 
 #leftCircle {
-    width: 700px;
-    height: 700px;
+    width: 40vw;
+    height: 40vw;
     background-color: #ddf5c7;
     position: absolute;
     left: -233px;
@@ -51,8 +51,8 @@ header, main {
 }
 
 #leftTopCircle {
-    width: 930px;
-    height: 700px;
+    width: 70vw;
+    height: 80%;
     background: #FF6D6D2B 0% 0% no-repeat padding-box;
     position: absolute;
     left: -35px;
@@ -103,18 +103,22 @@ header, main {
 }
 
 .headerMain > .titleDiv {
-    text-align: right;
-    width: fit-content;
+    text-align: center;
+    width: 100%;
+    /* background-color: Yellow; */
 
     margin: 0 auto;
     padding-top: 2%;
 }
 
 #DoI {
+    font-weight: 1000;
+    font-size: 2vw;
     letter-spacing: 7px;
 }
 
 #ofGSK {
+    font-size: 1.5vw;
     letter-spacing: 3px;
 }
 
@@ -245,12 +249,14 @@ header, main {
 
 /* MAIN */
 main {
-    height: 300%;
+    /* height: 300%; */
+    /* margin-bottom: 200px; */
     background-color: white;
 }
 
 .topBar {
     height: 100px;
+    width: 100%;
     position: sticky;
     top: 0;
     background-color: white;
@@ -324,5 +330,65 @@ main {
 @media screen and (max-width: 1299px) {
     .article {
         width: 90%;
+    }
+
+    .topBar > #mainTitle, .topBar > #partTitle {
+        font-size: 4vw;
+    }
+
+    .article > .title {
+        font-size: 3vw;
+    }
+    
+    .article > .dateAndStock {
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .circle {
+        display: none;
+    }
+
+    .article {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .selectDiv {
+        width: 90%;
+    }
+
+    .priceDiv {
+        width: 90%;
+    }
+
+    .loadTimeDiv > a {
+        font-size: 4vw;
+    }
+
+    .article > .articleText {
+        font-size: 15px;
+    }
+
+    .article > .title {
+        font-size: 5vw;
+    }
+    
+    .article > .dateAndStock {
+        font-size: 3vw;
+    }
+
+    #DoI {
+        display: inline-block;
+        margin-top: 20px;
+        font-size: 5vw;
+        letter-spacing: 3px;
+    }
+
+    #ofGSK {
+        font-size: 3vw;
+        letter-spacing: 3px;
     }
 }
