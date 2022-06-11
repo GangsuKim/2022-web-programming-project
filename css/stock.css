@@ -108,6 +108,10 @@
     .priceCircle[id=two] > .inner, .priceCircle[id=thr] > .inner {
         margin-top: 8vw;
     }
+
+    .stockBoard {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 999px) {
@@ -149,9 +153,5 @@
 
     .priceCircle[id=thr] > .inner > #stockName {
         font-size: 5vw;
-    }
-
-    main > .topBar > #subTitle {
-        display: none;
     }
 }
