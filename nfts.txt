@@ -1,5 +1,6 @@
-sheepFarm : Normal 2개, Rere 2개, 3땅 1개 50*2, 500, 170
+sheepFarm : Normal 2개, Rere 1개, 3땅 1개 50*2, 500, 170
 MA : 1개 199 - 8347
 MyFatBabiz : Common 1개, Rare 1개 73 , 90
+
 Drawshop Kingdom Reverse : 1개 200 - 8394
 BabyMongz : 2개 44 * 2 - 

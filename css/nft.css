@@ -1,6 +1,6 @@
 .nftSliderDiv {
     height: fit-content;
-    margin: 20px auto;
+    margin: 0px auto;
     /* background-color: yellow; */
     position: relative;
     overflow:hidden;
@@ -134,12 +134,49 @@ img {
     font-size: 1vw;
 }
 
+/* SLIDER */
+.slider {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.24);
+    top: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 110px;
+    font-size: 50px;
+    color: white;
+    font-family: 'GmarketSansLight';
+}
+
+.slider:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);;
+}
+
+.slidLeft {
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+
+.slidRight {
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
 .klaytn {
     box-shadow: 0px 0px 60px #4F463B4f;
 }
 
 .yooshi {
     box-shadow: 0px 0px 60px #1D972F4f;
+}
+
+#koreanPrice {
+    font-size: 25px;
+    font-family: 'GmarketSansLight';
 }
 
 @media screen and (max-width: 980px) {
