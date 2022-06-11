@@ -1,9 +1,10 @@
 .percentDiv {
-    width: 600px;
-    height: 430px;
+    width: 32vw;
+    height: 25vw;
     margin: 40px auto;
     position: relative;
 }
+
 
 .priceCircle {
     border-radius: 50%;
@@ -17,36 +18,33 @@
     transition: all 0.2s;
 }
 
+/* KLAYTN */
 .priceCircle[id=one] {
-    width: 400px;
-    height: 400px;
+    width: 20vw;
+    height: 20vw;
     background-color: #4F463B;  
 }
 
 .priceCircle[id=one] > .inner {
-    /* position: absolute;
-    top: 110px;
-    left: 60px; */
-    margin-top: 100px;
+    margin-top: 5vw;
     text-align: center;
 }
 
 .inner > #stockCount {
-    font-size: 20px;
+    font-size: 1vw;
 }
 
 .inner > #stockName {
-    font-size: 50px;
+    font-size: 2.7vw;
 }
 
-
 .inner > #stockPrice {
-    font-size: 25px;
+    font-size: 2vw;
 }
 
 .priceCircle[id=two] {
-    width: 250px;
-    height: 250px;
+    width: 13vw;
+    height: 13vw;
 
     background-color: #1D972F;
     position: absolute;
@@ -58,12 +56,16 @@
 
 .priceCircle[id=two] > .inner {
     text-align: center;
-    margin-top: 80px;
+    margin-top: 4.5vw;
+}
+
+.priceCircle[id=two] > .inner > #stockName {
+    font-size: 2vw;
 }
 
 .priceCircle[id=thr] {
-    width: 250px;
-    height: 250px;
+    width: 13vw;
+    height: 13vw;
 
     background-color: #070001;
     position: absolute;
@@ -75,7 +77,7 @@
 
 .priceCircle[id=thr] > .inner {
     text-align: center;
-    margin-top: 90px;
+    margin-top: 4vw;
 }
 
 .klaytn {
@@ -84,4 +86,76 @@
 
 .yooshi {
     box-shadow: 0px 0px 60px #1D972F4f;
+}
+
+@media screen and (max-width: 1299px) {
+    .percentDiv {
+        width: 50vw;
+        height: 40vw;
+    }
+
+    .priceCircle[id=one] {
+        width: 30vw;
+        height: 30vw;
+    }
+
+    .priceCircle[id=one] > .inner {
+        margin-top: 12vw;
+    }
+    
+
+    .priceCircle[id=two], .priceCircle[id=thr] {
+        width: 20vw;
+        height: 20vw;
+    }
+    
+    .priceCircle[id=two] > .inner, .priceCircle[id=thr] > .inner {
+        margin-top: 8vw;
+    }
+
+    .stockBoard {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 999px) {
+    .percentDiv {
+        width: 90vw;
+        height: 80vw;
+    }
+
+    .priceCircle[id=one] {
+        width: 60vw;
+        height: 60vw;
+    }
+
+    .priceCircle[id=one] > .inner {
+        margin-top: 19vw;
+    }
+    
+
+    .priceCircle[id=two], .priceCircle[id=thr] {
+        width: 40vw;
+        height: 40vw;
+    }
+    
+    .priceCircle[id=two] > .inner, .priceCircle[id=thr] > .inner {
+        margin-top: 12vw;
+    }
+
+    .inner > #stockCount {
+        font-size: 3vw;
+    }
+    
+    .inner > #stockName {
+        font-size: 7vw;
+    }
+    
+    .inner > #stockPrice {
+        font-size: 6vw;
+    }
+
+    .priceCircle[id=thr] > .inner > #stockName {
+        font-size: 5vw;
+    }
 }

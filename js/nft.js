@@ -1,127 +1,153 @@
-var KLAYTN = new Object({
-    cnt: 1021,
-    done: false,
-    name: 'Klaytn',
-    bought: 1359
+// NFT Object Array
+var NFTs = [
+    Object({
+        type: 'Person',
+        bought: 232,
+        now: 125,
+        imgName: 'ma.gif',
+        number: 8347,
+        collection: 'MA'
+    }), Object({
+        type: 'Land',
+        bought: 232,
+        now: 125,
+        imgName: 'SF_Land',
+        number: 42134,
+        collection: 'sheepFarm'
+    }), Object({
+        type: 'Sheep',
+        bought: 120,
+        now: 330,
+        imgName: 'SF_2513',
+        number: 237425,
+        collection: 'sheepFarm'
+    }), Object({
+        type: 'Sheep',
+        bought: 120,
+        now: 50,
+        imgName: 'SF_200',
+        number: 237973,
+        collection: 'sheepFarm'
+    }), Object({
+        type: 'Sheep',
+        bought: 120,
+        now: 50,
+        imgName: 'SF_130',
+        number: 237783,
+        collection: 'sheepFarm'
+    }), Object({
+        type: 'Rare',
+        bought: 280,
+        now: 50,
+        imgName: 'MFB_6741',
+        number: 6741,
+        collection: 'My Fat Babiz'
+    }), Object({
+        type: 'Uncommon',
+        bought: 250,
+        now: 50,
+        imgName: 'MFB_7211',
+        number: 7211,
+        collection: 'My Fat Babiz'
+    }), Object({
+        type: 'Uncommon',
+        bought: 140,
+        now: 200,
+        imgName: 'DKR_8394',
+        number: 8394,
+        collection: 'DKR'
+    }), Object({
+        type: 'Mongz',
+        bought: 75,
+        now: 35,
+        imgName: 'BM_1649',
+        number: 1649,
+        collection: 'Baby Mongz'
+    }), Object({
+        type: 'Mongz',
+        bought: 75,
+        now: 35,
+        imgName: 'BM_8851',
+        number: 8851,
+        collection: 'Baby Mongz'
+    })
+];
+
+let KLAYTN_price = 0;
+let totalPrice = 0;
+let basePos = 0;
+
+fetch("https://api.bithumb.com/public/ticker/KLAY_KRW")
+.then(res => res.json())
+.then(res => {
+    KLAYTN_price = parseFloat(res.data.closing_price);
+}).then(() => {
+    NFTs.forEach(nft => {
+        totalPrice += nft.now;
+    })
+    $('#totlaPrice').text(addComma(totalPrice * totalPrice) + ' 원');
+})
+
+$(document).ready(function () {
+    $('.NFTBarTop').each(function (i, barTop) {
+        $(barTop).children('.collection').text(NFTs[i].collection);
+        $(barTop).children('#detail').text('#' + NFTs[i].number);
+    })
+
+    $('.nftSliderDiv > div').each(function (i, NFTBar) {
+        var imgStr = NFTs[i].imgName;
+
+        $(NFTBar).children('img').attr('alt', imgStr);
+
+
+        if (imgStr.indexOf('.') == -1) {
+            imgStr += '.png';
+        }
+
+        $(NFTBar).children('img').attr('src', 'images/' + imgStr);
+
+        const objectStr = ['bought', 'now', 'percent'];
+        $(NFTBar).children('div').children('div').children('#boughtPrice').each(function (j, eachPrice) {
+            if (j < 2) {
+                $(eachPrice).text(NFTs[i][objectStr[j]]);
+            } else {
+                $(eachPrice).text(((NFTs[i][objectStr[1]] / NFTs[i][objectStr[0]] - 1) * 100).toFixed(0) + '%');
+            }
+        })
+    })
 });
 
-var YOOSHI = new Object({
-    cnt: 1234516137,
-    done: false,
-    name: 'Yooshi',
-    bought: 0.0004784
-});
+function moveTo(dir) {
+    basePos += dir;
 
-var NFT = new Object({
-    cnt: 191548354,
-    done: false,
-    name: 'NFT',
-    bought: 0.0062192
-});
+    $('.NFTBarTop').each(function (k, barTop) {
+        i = (Math.abs(k+basePos)) % NFTs.length;
+        $(barTop).children('.collection').text(NFTs[i].collection);
+        $(barTop).children('#detail').text('#' + NFTs[i].number);
+    })
 
-const coins = [KLAYTN, YOOSHI, NFT];
-var coinDivs = [];
+    $('.nftSliderDiv > div').each(function (k, NFTBar) {
+        i = (Math.abs(k+basePos)) % NFTs.length;
 
-const texts = document.querySelectorAll('#stockPrice');
-const totalPrice = document.querySelector('#totlaPrice');
+        var imgStr = NFTs[i].imgName;
 
-function fetchCoinData() {
-    fetch("https://api.bithumb.com/public/ticker/KLAY_KRW")
-        .then(res => res.json())
-        .then(res => {
-            KLAYTN.price = parseFloat(res.data.closing_price);
-            KLAYTN.done = true;
-            stockPrice[0].innerText = addComma(parseInt(KLAYTN.price * KLAYTN.cnt)) + '원';
-            setUpPrice();
-        });
+        $(NFTBar).children('img').attr('alt', imgStr);
 
-    fetch("https://api.coingecko.com/api/v3/coins/yooshi?localization=false")
-        .then(res => res.json())
-        .then(res => {  
-            YOOSHI.price = res.market_data.current_price.krw;
-            YOOSHI.done = true;
-            stockPrice[1].innerText = addComma(parseInt(YOOSHI.price * YOOSHI.cnt)) + '원';
-            setUpPrice();
-        });
 
-    // https://api.coingecko.com/api/v3/coins/apenft?localization=false
-    fetch("https://api.coingecko.com/api/v3/coins/apenft?localization=false")
-        .then(res => res.json())
-        .then(res => {  
-            NFT.price = res.market_data.current_price.krw;
-            NFT.done = true;
-            stockPrice[2].innerText = addComma(parseInt(NFT.price * NFT.cnt)) + '원';
-            setUpPrice();
-        });
+        if (imgStr.indexOf('.') == -1) {
+            imgStr += '.png';
+        }
+
+        $(NFTBar).children('img').attr('src', 'images/' + imgStr);
+
+        const objectStr = ['bought', 'now', 'percent'];
+        totalPrice += NFTs[i].now;
+        $(NFTBar).children('div').children('div').children('#boughtPrice').each(function (j, eachPrice) {
+            if (j < 2) {
+                $(eachPrice).text(NFTs[i][objectStr[j]]);
+            } else {
+                $(eachPrice).text(((NFTs[i][objectStr[1]] / NFTs[i][objectStr[0]] - 1) * 100).toFixed(0) + '%');
+            }
+        })
+    })
 }
-
-function setUpPrice() {
-    if (KLAYTN.done && YOOSHI.done && NFT.done) {
-        var price = (KLAYTN.price * KLAYTN.cnt) + (YOOSHI.price * YOOSHI.cnt) + (NFT.price * NFT.cnt) + '';
-        totalPrice.innerText = addComma(parseInt(price)) + '원';
-        setUpBoard(coins);
-    }
-}
-
-function setUpBoard(coinIn) {
-    for (i = 0; i < coinIn.length; i++) {
-        var CBDiv = document.createElement('div');
-        CBDiv.setAttribute('class', 'stock');
-        CBDiv.setAttribute('id', i);
-
-        CBDiv.innerHTML = '<a id="stockName">' + coinIn[i].name + '</a>';
-        CBDiv.innerHTML += '<a id="stockCount" class="fontLight" style="margin-left: 10px">' + addComma(coinIn[i].cnt) + '개    </a><br>';
-
-        CBInner = document.createElement('div');
-        CBInner.setAttribute('class','priceInner');
-
-        CBInner.innerHTML += '<a id="stockBoardTitle">현재 가격</a>';
-        CBInner.innerHTML += '<a id="stockBoardPrice">' + addComma(coinIn[i].price) + '원</a>';
-        CBInner.innerHTML += '<a id="stockBoardTitle">매수 가격</a>';
-        CBInner.innerHTML += '<a id="stockBoardPrice">' + addComma(coinIn[i].bought) + '원</a>';
-        CBInner.innerHTML += '<a id="stockBoardTitle">수익률</a>';
-        CBInner.innerHTML += '<a id="stockBoardPrice">' + calcPM(coinIn[i].price, coinIn[i].bought) + '%</a>';
-        
-        CBDiv.appendChild(CBInner);
-        coinDivs.push(CBDiv)
-    }
-
-    const stockBoard = document.getElementsByClassName('stockBoard')[0];
-    stockBoard.insertBefore(coinDivs[0], stockBoard.getElementsByClassName('stockBoardBottom')[0]);
-}
-
-document.getElementById('boardBefore').addEventListener('click', handleBoardBefore);
-document.getElementById('boardNext').addEventListener('click', handleBoardNext);
-
-function handleBoardBefore() {
-    const stockBoard = document.getElementsByClassName('stockBoard')[0];
-    const stock = stockBoard.getElementsByClassName('stock')[0];
-    var moveTo;
-
-    if(stock.id == 0) {
-        moveTo = coinDivs[coinDivs.length - 1];
-    } else {
-        moveTo = coinDivs[stock.id - 1]
-    }
-
-    stockBoard.removeChild(stock);
-    stockBoard.insertBefore(moveTo, stockBoard.getElementsByClassName('stockBoardBottom')[0]);
-}
-
-function handleBoardNext() {
-    const stockBoard = document.getElementsByClassName('stockBoard')[0];
-    const stock = stockBoard.getElementsByClassName('stock')[0];
-    var moveTo;
-
-    if(stock.id == (coinDivs.length - 1)) {
-        moveTo = coinDivs[0];
-    } else {
-        moveTo = coinDivs[parseInt(stock.id) + 1];
-    }
-
-    stockBoard.removeChild(stock);
-    stockBoard.insertBefore(moveTo, stockBoard.getElementsByClassName('stockBoardBottom')[0]);
-}
-
-fetchCoinData();
-showTime()
