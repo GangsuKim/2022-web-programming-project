@@ -166,12 +166,8 @@ img {
     transform: translateY(-50%);
 }
 
-.klaytn {
-    box-shadow: 0px 0px 60px #4F463B4f;
-}
-
-.yooshi {
-    box-shadow: 0px 0px 60px #1D972F4f;
+.normal {
+    box-shadow: 0px 0px 60px #4e4e4e4f;
 }
 
 #koreanPrice {
