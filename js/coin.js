@@ -44,7 +44,6 @@ function fetchCoinData() {
             setUpPrice();
         });
 
-    // https://api.coingecko.com/api/v3/coins/apenft?localization=false
     fetch("https://api.coingecko.com/api/v3/coins/apenft?localization=false")
         .then(res => res.json())
         .then(res => {  

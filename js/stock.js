@@ -56,10 +56,6 @@ function setUpBoard(stockIn) {
         SBDiv.setAttribute('class', 'stock');
         SBDiv.setAttribute('id', i);
 
-        // if(i != 0) {
-        //     SBDiv.hidden = true;
-        // }
-
         SBDiv.innerHTML = '<a id="stockName">' + stockIn[i].name + '</a>';
         SBDiv.innerHTML += '<a id="stockCount" class="fontLight">' + stockIn[i].cnt + '주</a><br>';
 

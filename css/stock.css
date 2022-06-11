@@ -3,7 +3,6 @@
     height: 25vw;
     margin: 40px auto;
     position: relative;
-    /* background-color: yellow; */
 }
 
 .priceCircle {
@@ -25,9 +24,6 @@
 }
 
 .priceCircle[id=one] > .inner {
-    /* position: absolute;
-    top: 110px;
-    left: 60px; */
     margin-top: 5vw;
     text-align: center;
 }
