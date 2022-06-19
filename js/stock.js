@@ -15,7 +15,7 @@ function fetchData() {
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'yh-finance.p.rapidapi.com',
-            'X-RapidAPI-Key': '6e1e98fe82msh9b0b06f7a98c2d2p1c8126jsn776f8ccf5839'
+            'X-RapidAPI-Key': 'YOUR API KEY'
         }
     };
 
