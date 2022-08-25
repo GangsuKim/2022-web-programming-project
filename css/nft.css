@@ -1,14 +1,12 @@
 .nftSliderDiv {
     height: fit-content;
     margin: 0px auto;
-    /* background-color: yellow; */
     position: relative;
     overflow:hidden;
     white-space: nowrap;
 }
 
 .centerNFTBar {
-    /* height: 500px; */
     height: fit-content;
     width: 19%;
     background-color: white;
